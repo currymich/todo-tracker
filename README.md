@@ -27,5 +27,19 @@ Trello clone app to practice CRUD with Mongo, Express and Node
  - Show: https://wireframe.cc/H0BtzH
  
 # Data Structure
- - User = {username: String, password: String, email: String, todos_assigned: [todoSchema], todos_created: [todoSchema]}
- - Todo = {name: String, assigned_to: [userSchema], comments: [String], deadline: String, status: String, date_created: Date, date_updated: Date}
+ - User = {
+    username: String, 
+    password: String, 
+    email: String, 
+    todos_assigned: [todoSchema], 
+    todos_created: [todoSchema]
+   }
+ - Todo = {
+    name: String, 
+    assigned_to: [userSchema], 
+    comments: [String], 
+    deadline: String, 
+    status: String, 
+    date_created: Date, 
+    date_updated: Date
+   }
