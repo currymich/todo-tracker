@@ -1,5 +1,35 @@
+//REQUIRE PACKAGES
 var express = require('express');
-var app = express();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
+var session = require('express-session');
+var logger = require('morgan');
+var hbs = require('hbs');
+
+//REQUIRE CONTROLLER FILES
+var usersController = require('./controllers/users.js');
+
+//START SERVER AND CONNECT DB
+var app = express();
+mongoose.connect('mongodb://localhost/todo-tracker');
+
+//CONFIGURE MIDDLEWARE/PACKAGES
+app.set('view engine', 'hbs');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(logger('dev'));
+app.use(methodOverride('_method'));
+
+app.use(session({
+  secret: "SuperDuperSecretPass",
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use('/users', usersController);
+
+app.listen(4000, function(){
+  console.log('Server listening on 4000!')
+})
