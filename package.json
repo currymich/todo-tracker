@@ -1,0 +1,30 @@
+{
+  "name": "todo-tracker",
+  "version": "1.0.0",
+  "description": "Trello clone app to practice CRUD with Mongo, Express and Node",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/currymich/todo-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/currymich/todo-tracker/issues"
+  },
+  "homepage": "https://github.com/currymich/todo-tracker#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.0",
+    "express-session": "^1.15.0",
+    "hbs": "^4.0.1",
+    "method-override": "^2.3.7",
+    "mongoose": "^4.7.8",
+    "morgan": "^1.7.0"
+  }
+}
