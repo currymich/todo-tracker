@@ -12,7 +12,9 @@ var usersController = require('./controllers/users.js');
 
 //START SERVER AND CONNECT DB
 var app = express();
-mongoose.connect('mongodb://localhost/todo-tracker');
+
+var mongoURI =  process.env.MONGODB_URI || 'mongodb://localhost/todo-tracker';
+mongoose.connect(mongoURI);
 
 //CONFIGURE MIDDLEWARE/PACKAGES
 app.set('view engine', 'hbs');
@@ -30,6 +32,6 @@ app.use(session({
 
 app.use('/users', usersController);
 
-app.listen(4000, function(){
+app.listen(process.env.PORT || 4000, function(){
   console.log('Server listening on 4000!')
 })
