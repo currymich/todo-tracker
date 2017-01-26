@@ -3,22 +3,21 @@ var Schema = mongoose.Schema;
 
 mongoose.Promise = global.Promise;
 
+var TodoSchema = new Schema({
+  name: String,
+  deadline: String,
+  status: String,
+  comments: [String],
+  date_created: Date,
+  date_updated: Date
+});
+
 var UserSchema = new Schema({
   username: String,
   password: String,
   email: String,
   todos_assigned: [TodoSchema],
   todos_created: [TodoSchema],
-  date_created: Date,
-  date_updated: Date
-});
-
-var TodoSchema = new Schema({
-  name: String,
-  deadline: String,
-  status: String,
-  assigned_to: [UserSchema],
-  comments: [String],
   date_created: Date,
   date_updated: Date
 });
