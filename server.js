@@ -32,7 +32,7 @@ app.use(session({
 
 app.use('/users', usersController);
 
-app.get('/' function(req,res){
+app.get('/', function(req,res){
   res.send('hurray homepage!')
 })
 
