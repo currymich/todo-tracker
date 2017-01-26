@@ -32,6 +32,10 @@ app.use(session({
 
 app.use('/users', usersController);
 
+app.get('/' function(req,res){
+  res.send('hurray homepage!')
+})
+
 app.listen(process.env.PORT || 4000, function(){
   console.log('Server listening on 4000!')
 })
