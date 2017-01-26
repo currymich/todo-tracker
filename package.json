@@ -23,7 +23,7 @@
     "url": "git+https://github.com/currymich/todo-tracker.git"
   },
   "engines": {
-    "node": "v6.9.1"
+    "node": "6.9.1"
   },
   "author": "Mike Curry (/currymich)",
   "license": "ISC",
