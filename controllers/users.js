@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
 var Todo = require('../models/todo.js');
+var authHelper = require('../helpers/auth.js')
 
 //SIGNUP ROUTE - show a signup page
 router.get('/signup', function(req, res){
@@ -9,7 +10,7 @@ router.get('/signup', function(req, res){
 })
 
 //EDIT ROUTE - edit user details (only access your own or access any as admin)
-router.get('/:userId/edit', function(req, res){
+router.get('/:userId/edit', authHelper.authorize, function(req, res){
   User.findById(req.params.userId)
     .exec(function(err, user){
       if(err) console.log(err);
@@ -29,16 +30,17 @@ router.get('/:userId', function(req, res){
 })
 
 //CREATE ROUTE - receives data from signup form, creates new user
-router.post('/', function(req, res){
+router.post('/', authHelper.createSecure, function(req, res){
   var user = new User({
     username: req.body.username,
-    // password: ,
+    password: req.body.hashedPassword,
     email: req.body.email,
     todos_assigned: [],
     todos_created: []
   })
   user.save(function(err, user){
     if(err) console.log(err);
+    req.session.currentUser = user;
     res.redirect('/users/' + user._id);
   })
 })
