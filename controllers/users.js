@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
-var Todo = require('../models/todo.js');
+var Ticket = require('../models/ticket.js');
 var authHelper = require('../helpers/auth.js')
 
 //SIGNUP ROUTE - show a signup page
@@ -41,8 +41,8 @@ router.post('/', authHelper.createSecure, function(req, res){
     email: req.body.email,
     username: req.body.username,
     password_digest: res.hashedPassword,
-    // todos_assigned: [],
-    // todos_created: []
+    tickets_assigned: [],
+    tickets_created: []
   })
   console.log('user before save' + user)
   user.save(function(err, user){

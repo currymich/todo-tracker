@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 mongoose.Promise = global.Promise;
 
-var TodoSchema = new Schema({
+var TicketSchema = new Schema({
   name: String,
   deadline: String,
   status: String,
@@ -16,8 +16,8 @@ var UserSchema = new Schema({
   username: String,
   password_digest: String,
   email: String,
-  todos_assigned: [TodoSchema],
-  todos_created: [TodoSchema],
+  tickets_assigned: [TicketSchema],
+  tickets_created: [TicketSchema],
   date_created: Date,
   date_updated: Date
 });
@@ -31,7 +31,7 @@ UserSchema.pre('save', function(next){
   next();
 });
 
-TodoSchema.pre('save', function(next){
+TicketSchema.pre('save', function(next){
   now = new Date();
   this.updated_at = now;
 
@@ -41,9 +41,9 @@ TodoSchema.pre('save', function(next){
 })
 
 var UserModel = mongoose.model('User', UserSchema);
-var TodoModel = mongoose.model('Todo', TodoSchema);
+var TicketModel = mongoose.model('Ticket', TicketSchema);
 
 module.exports = {
   User: UserModel,
-  Todo: TodoModel
+  Ticket: TicketModel
 }

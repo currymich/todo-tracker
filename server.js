@@ -11,6 +11,7 @@ var hbs = require('hbs');
 //REQUIRE CONTROLLER FILES
 var usersController = require('./controllers/users.js');
 var sessionsController = require('./controllers/sessions.js');
+var todoController = require('./controllers/todos.js')
 
 //START SERVER AND CONNECT DB
 var app = express();
@@ -48,6 +49,7 @@ app.use(session({
 
 app.use('/users', usersController);
 app.use('/sessions', sessionsController);
+app.use('/', todoController);
 
 app.get('/', function(req,res){
   res.send('hurray homepage!')
