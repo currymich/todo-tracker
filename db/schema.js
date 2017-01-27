@@ -14,7 +14,7 @@ var TodoSchema = new Schema({
 
 var UserSchema = new Schema({
   username: String,
-  password: String,
+  password_digest: String,
   email: String,
   todos_assigned: [TodoSchema],
   todos_created: [TodoSchema],

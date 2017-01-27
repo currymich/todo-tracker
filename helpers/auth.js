@@ -11,21 +11,23 @@ function createSecure(req, res, next) {
 function loginUser(req, res, next) {
   var email = req.body.email;
   var password = req.body.password;
-
-  User.findOne({ email: email })
-  .then(function(foundUser){
+  console.log(password)
+  var query = User.findOne({ email: email })
+  .exec()
+  query.then(function(foundUser){
+    console.log(foundUser)
     if (foundUser == null) {
-      res.json({status: 401, data: "unauthorized"});
+      res.json({status: 401, data: "unauthorized"})
 
     } else if (bcrypt.compareSync(password, foundUser.password_digest)) {
       req.session.currentUser = foundUser;
     }
-    next();
+    next()
   })
   .catch(function(err){
-    res.json({status: 500, data: err});
+    res.send('err: ' + err)
   });
-};
+}
 
 //create a function called "authorized" that checks if the CurrentUser's id matches the id in params
 function authorize(req, res, next) {

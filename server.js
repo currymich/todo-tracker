@@ -1,4 +1,5 @@
 //REQUIRE PACKAGES
+pry = require('pryjs')
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
@@ -9,6 +10,7 @@ var hbs = require('hbs');
 
 //REQUIRE CONTROLLER FILES
 var usersController = require('./controllers/users.js');
+var sessionsController = require('./controllers/sessions.js');
 
 //START SERVER AND CONNECT DB
 var app = express();
@@ -45,6 +47,7 @@ app.use(session({
 }));
 
 app.use('/users', usersController);
+app.use('/sessions', sessionsController);
 
 app.get('/', function(req,res){
   res.send('hurray homepage!')
