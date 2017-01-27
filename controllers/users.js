@@ -10,7 +10,7 @@ router.get('/signup', function(req, res){
 
 //EDIT ROUTE - edit user details (only access your own or access any as admin)
 router.get('/:userId/edit', function(req, res){
-  User.findById(req.params.id)
+  User.findById(req.params.userId)
     .exec(function(err, user){
       if(err) console.log(err);
       // console.log('Edit route for ' + user.username);
@@ -20,10 +20,10 @@ router.get('/:userId/edit', function(req, res){
 
 //SHOW ROUTE - view user details
 router.get('/:userId', function(req, res){
-  User.findById(req.params.id)
+  User.findById(req.params.userId)
     .exec(function(err, user){
       if(err) console.log(err);
-      // console.log('Show route for ' + user.username);
+      console.log(user);
       res.render('users/show.hbs', {user: user});
     })
 })
@@ -39,14 +39,14 @@ router.post('/', function(req, res){
   })
   user.save(function(err, user){
     if(err) console.log(err);
-    res.redirect('/' + user._id);
+    res.redirect('/users/' + user._id);
   })
 })
 
 //UPDATE ROUTE - receives data from edit form
 
 router.put('/:userId', function(req, res){
-  User.findByIdAndUpdate(req.params.id, {
+  User.findByIdAndUpdate(req.params.userId, {
     username: req.body.username,
     // password: ,
     email: req.body.email
@@ -54,7 +54,7 @@ router.put('/:userId', function(req, res){
   .exec(function(err, user){
     if(err) console.log(err);
     console.log(user);
-    res.redirect('/' + donut._id)
+    res.redirect('/users/' + user._id)
   })
 })
 
