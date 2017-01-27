@@ -1,1 +1,13 @@
-<h1>hit edit</h1>
+<h1>Edit User</h1>
+<form action="/{{donut.id}}?_method=PUT", method="POST">
+  <div>
+    <input type="text" name="username" value="{{user.username}}">
+  </div>
+  <div>
+    <input type="text" name="email" value="{{user.email}}">
+  </div>
+
+  <div>
+    <input type="submit" value="Edit Donut">
+  </div>
+</form>

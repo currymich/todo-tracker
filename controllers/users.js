@@ -13,7 +13,7 @@ router.get('/:userId/edit', function(req, res){
   User.findById(req.params.id)
     .exec(function(err, user){
       if(err) console.log(err);
-      console.log('Edit route for ' + user.username);
+      // console.log('Edit route for ' + user.username);
       res.render('users/edit.hbs', {user: user});
     })
 })
@@ -21,9 +21,9 @@ router.get('/:userId/edit', function(req, res){
 //SHOW ROUTE - view user details
 router.get('/:userId', function(req, res){
   User.findById(req.params.id)
-    .exec(function(err, donut){
+    .exec(function(err, user){
       if(err) console.log(err);
-      console.log('Show route for ' + user.username);
+      // console.log('Show route for ' + user.username);
       res.render('users/show.hbs', {user: user});
     })
 })
@@ -32,7 +32,7 @@ router.get('/:userId', function(req, res){
 router.post('/', function(req, res){
   var user = new User({
     username: req.body.username,
-    password: ,
+    // password: ,
     email: req.body.email,
     todos_assigned: [],
     todos_created: []
@@ -48,7 +48,7 @@ router.post('/', function(req, res){
 router.put('/:userId', function(req, res){
   User.findByIdAndUpdate(req.params.id, {
     username: req.body.username,
-    password: ,
+    // password: ,
     email: req.body.email
   }, {new: true})
   .exec(function(err, user){
