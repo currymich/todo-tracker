@@ -10,18 +10,52 @@ router.get('/signup', function(req, res){
 
 //EDIT ROUTE - edit user details (only access your own or access any as admin)
 router.get('/:userId/edit', function(req, res){
-  res.render('users/edit.hbs');
+  User.findById(req.params.id)
+    .exec(function(err, user){
+      if(err) console.log(err);
+      console.log('Edit route for ' + user.username);
+      res.render('users/edit.hbs', {user: user});
+    })
 })
 
 //SHOW ROUTE - view user details
 router.get('/:userId', function(req, res){
-  res.render('users/show.hbs');
+  User.findById(req.params.id)
+    .exec(function(err, donut){
+      if(err) console.log(err);
+      console.log('Show route for ' + user.username);
+      res.render('users/show.hbs', {user: user});
+    })
 })
 
 //CREATE ROUTE - receives data from signup form, creates new user
 router.post('/', function(req, res){
-  res.send('created something!')
+  var user = new User({
+    username: req.body.username,
+    password: ,
+    email: req.body.email,
+    todos_assigned: [],
+    todos_created: []
+  })
+  user.save(function(err, user){
+    if(err) console.log(err);
+    res.redirect('/' + user._id);
+  })
 })
 
+//UPDATE ROUTE - receives data from edit form
+
+router.put('/:userId', function(req, res){
+  User.findByIdAndUpdate(req.params.id, {
+    username: req.body.username,
+    password: ,
+    email: req.body.email
+  }, {new: true})
+  .exec(function(err, user){
+    if(err) console.log(err);
+    console.log(user);
+    res.redirect('/' + donut._id)
+  })
+})
 
 module.exports = router;
