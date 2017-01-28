@@ -1,9 +1,11 @@
 <h1>Hit ticket index</h1>
 
-<ul>
+<ul class="ticket_holder">
 {{#each tickets}}
-  <a href=/tickets/{{_id}}><li>{{name}}</li></a>
-  {{assigned_to}}
+  <div class="ticket">
+    <a href=/tickets/{{_id}}><li>{{name}}</li></a>
+    {{assigned_to}}
+  </div>
 {{/each}}
 </ul>
 

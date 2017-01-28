@@ -14,9 +14,10 @@ var usersController = require('./controllers/users.js');
 var sessionsController = require('./controllers/sessions.js');
 var ticketsController = require('./controllers/tickets.js')
 
-//START SERVER AND CONNECT DB
+//START SERVER INSTANCE
 var app = express();
 
+//CONNECT DB WITH DB LOCATION EITHER SET BY HEROKU IF USING THE ONLINE VERSION OR SPECIFIED HERE IF USING LOCALHOST
 var mongoURI =  process.env.MONGODB_URI || 'mongodb://localhost/todo-tracker';
 mongoose.connect(mongoURI);
 
@@ -35,28 +36,25 @@ db.once('open', function(){
 
 //CONFIGURE MIDDLEWARE/PACKAGES
 app.set('view engine', 'hbs');
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(logger('dev'));
 app.use(methodOverride('_method'));
-
-moment().format();
-
 app.use(session({
   secret: "SuperDuperSecretPass",
   resave: false,
   saveUninitialized: false
 }));
 
+//SET PUBLIC FOLDER FOR LINKING CLIENT-SIDE FILES
+app.use(express.static('public'));
+
+//SET ROUTES TO HIT CONTROLLERS
 app.use('/users', usersController);
 app.use('/sessions', sessionsController);
 app.use('/', ticketsController);
-//
-// app.get('/', function(req,res){
-//   res.send('hurray homepage!')
-// })
 
+//CONNECT SERVER TO WORLD :)
 app.listen(process.env.PORT || 4000, function(){
   console.log('Server listening on 4000!')
 })

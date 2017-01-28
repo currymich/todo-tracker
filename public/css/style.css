@@ -1,0 +1,23 @@
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 20px;
+}
+
+.ticket_holder{
+  overflow: auto;
+  width: 12.5em;
+  padding: 1em;
+  border: 1px solid black;
+}
+
+.ticket {
+  padding: 1em;
+  border: 1px solid black;
+}
+
+p {
+  color: red;
+}
