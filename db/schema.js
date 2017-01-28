@@ -5,9 +5,11 @@ mongoose.Promise = global.Promise;
 
 var TicketSchema = new Schema({
   name: String,
-  deadline: String,
+  deadline: Date,
   status: String,
   comments: [String],
+  created_by: String,
+  assigned_to: [String],
   date_created: Date,
   date_updated: Date
 });

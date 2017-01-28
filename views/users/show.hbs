@@ -1,8 +1,10 @@
 <h1>hit show {{user.username}}</h1>
 <h3>email: {{user.email}}</h3>
 
-<a href="/users/{{user._id}}/edit">edit current</a>
-<a href="/users/signup">create new user</a>
-<form method="post" action="/sessions?_method=DELETE">
-  <input type="submit" value="logout">
-</form>
+{{#if currentUser}}
+  <a href="/users/{{user._id}}/edit">edit current</a>
+  <form method="post" action="/sessions?_method=DELETE">
+    <input type="submit" value="logout">
+  </form>
+{{/if}}
+<a href="/tickets">ticket index</a>

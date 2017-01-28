@@ -1,0 +1,13 @@
+<h1>Hit ticket index</h1>
+
+<ul>
+{{#each tickets}}
+  <a href=/tickets/{{_id}}><li>{{name}}</li></a>
+{{/each}}
+</ul>
+
+<a href="/tickets/new">Create new ticket</a>
+
+{{#if currentUser}}
+  <a href=/users/{{currentUser._id}}/edit>Edit your profile</a>
+{{/if}}
