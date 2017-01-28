@@ -1,0 +1,13 @@
+<h1>Edit Ticket</h1>
+<form action="/{{ticket._id}}?_method=PATCH", method="POST">
+  <div>
+    <input type="text" name="name" value="{{ticket.name}}">
+  </div>
+  <div>
+    <input type="date" name="deadline" value="{{deadline}}">
+  </div>
+
+  <div>
+    <input type="submit" value="Edit Ticket">
+  </div>
+</form>

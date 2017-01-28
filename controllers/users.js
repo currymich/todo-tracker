@@ -19,7 +19,6 @@ router.get('/:userId/edit', authHelper.authorize, function(req, res){
   User.findById(req.params.userId)
     .exec(function(err, user){
       if(err) console.log(err);
-      // console.log('Edit route for ' + user.username);
       res.render('users/edit.hbs', {user: user});
     })
 })
@@ -59,7 +58,6 @@ router.post('/', authHelper.createSecure, function(req, res){
 router.put('/:userId', function(req, res){
   User.findByIdAndUpdate(req.params.userId, {
     username: req.body.username,
-    // password: ,
     email: req.body.email
   }, {new: true})
   .exec(function(err, user){

@@ -2,5 +2,8 @@
 
 <h3>Due: {{ticket.deadline}}</h3>
 <p>Created by: {{ticket.created_by}}</p>
+<p>Assigned to: {{ticket.assigned_to}}</p>
 
+
+<a href="/tickets/{{ticket._id}}/edit">Edit this ticket</a>
 <a href="/tickets">Back to index</a>
