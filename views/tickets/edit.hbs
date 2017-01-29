@@ -1,5 +1,6 @@
 <h1>Edit Ticket</h1>
-<form action="/lists/tickets/{{ticket._id}}?listId={{listId}}_method=PATCH", method="POST">
+<form action="/lists/tickets/{{ticket._id}}?_method=PATCH", method="POST">
+  <input type="hidden" name="listId" value="{{listId}}">
   <div>
     <input type="text" name="name" value="{{ticket.name}}">
   </div>
