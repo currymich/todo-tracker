@@ -6,7 +6,7 @@ var authHelper = require('../helpers/auth.js');
 //LOGIN USER - take data from login form and send to authHelper
 router.post('/login', authHelper.loginUser, function(req, res){
   console.log(req.session.currentUser)
-  res.redirect('/');
+  res.redirect('/lists');
 });
 
 //LOGOUT USER

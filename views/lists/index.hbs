@@ -1,0 +1,14 @@
+<a href="/lists/new">Create a new list</a>
+
+{{#each lists}}
+  <div class="ticket_holder">
+    <h3>{{name}}</h3>
+    {{#each tickets}}
+      <div class="ticket">
+        <a href=/lists/tickets/{{_id}}?listId={{../_id}}><li>{{name}}</li></a>
+        {{assigned_to}}
+      </div>
+    {{/each}}
+    <a href="/lists/tickets/new?listId={{_id}}">Create new ticket</a>
+  </div>
+{{/each}}

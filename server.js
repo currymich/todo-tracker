@@ -12,7 +12,8 @@ var hbs = require('hbs');
 //REQUIRE CONTROLLER FILES
 var usersController = require('./controllers/users.js');
 var sessionsController = require('./controllers/sessions.js');
-var ticketsController = require('./controllers/tickets.js')
+var ticketsController = require('./controllers/tickets.js');
+var listsController = require('./controllers/lists.js');
 
 //START SERVER INSTANCE
 var app = express();
@@ -52,7 +53,8 @@ app.use(express.static('public'));
 //SET ROUTES TO HIT CONTROLLERS
 app.use('/users', usersController);
 app.use('/sessions', sessionsController);
-app.use('/', ticketsController);
+app.use('/lists/tickets', ticketsController);
+app.use('/', listsController);
 
 //CONNECT SERVER TO WORLD :)
 app.listen(process.env.PORT || 4000, function(){

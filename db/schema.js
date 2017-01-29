@@ -7,6 +7,7 @@ var TicketSchema = new Schema({
   name: String,
   deadline: Date,
   status: String,
+  list: String,
   comments: [String],
   created_by: String,
   assigned_to: [String],
@@ -23,6 +24,11 @@ var UserSchema = new Schema({
   date_created: Date,
   date_updated: Date
 });
+
+var ListSchema = new Schema({
+  name: String,
+  tickets: [TicketSchema]
+})
 
 UserSchema.pre('save', function(next){
   now = new Date();
@@ -44,8 +50,10 @@ TicketSchema.pre('save', function(next){
 
 var UserModel = mongoose.model('User', UserSchema);
 var TicketModel = mongoose.model('Ticket', TicketSchema);
+var ListModel = mongoose.model('List', ListSchema)
 
 module.exports = {
   User: UserModel,
-  Ticket: TicketModel
+  Ticket: TicketModel,
+  List: ListModel
 }
