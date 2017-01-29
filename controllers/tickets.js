@@ -39,9 +39,10 @@ router.post('/', function(req,res){
   List.findById(req.query.listId)
   .exec(function(err, list){
     if(err) console.log(err);
+    var deadline_date = req.body.deadline ? moment(req.body.deadline) :  new Date();
     list.tickets.push({
       name: req.body.name,
-      deadline: moment(req.body.deadline),
+      deadline: deadline_date,
       created_by: req.session.currentUser.username,
     })
     list.save();
@@ -60,7 +61,18 @@ router.patch('/:ticketId', function(req,res){
     list.save();
   })
   res.redirect(`/lists/tickets/${req.params.ticketId}/?listId=${req.body.listId}`)
+})
 
+//DELETE TICKET ROUTE
+router.delete('/:ticketId', function(req, res){
+  List.findById(req.body.listId)
+  .exec(function(err, list){
+    if(err) console.log(err);
+    var ticket = list.tickets.id(req.params.ticketId);
+      ticket.remove();
+    list.save();
+  })
+  res.redirect('/lists')
 })
 
 module.exports = router;
