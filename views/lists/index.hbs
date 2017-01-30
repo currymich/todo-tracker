@@ -1,14 +1,18 @@
-<a href="/lists/new">Create a new list</a>
 
+<div class="main">
 {{#each lists}}
   <div class="ticket_holder">
     <h3>{{name}}</h3>
     {{#each tickets}}
       <div class="ticket">
-        <a href=/lists/tickets/{{_id}}?listId={{../_id}}><li>{{name}}</li></a>
+        <a href=/lists/tickets/{{_id}}?listId={{../_id}}>{{name}}</a>
         {{assigned_to}}
       </div>
     {{/each}}
     <a href="/lists/tickets/new?listId={{_id}}">Create new ticket</a>
   </div>
 {{/each}}
+<div class="ticket_holder">
+  <a href="/lists/new"><h3>Create a new list</h3></a>
+</div>
+</div>
