@@ -58,6 +58,7 @@ router.patch('/:ticketId', function(req,res){
     var ticket = list.tickets.id(req.params.ticketId)
       ticket.name = req.body.name;
       ticket.deadline = moment(req.body.deadline);
+      ticket.assigned_to.push(req.body.assigned_to);
     list.save();
   })
   res.redirect(`/lists/tickets/${req.params.ticketId}/?listId=${req.body.listId}`)

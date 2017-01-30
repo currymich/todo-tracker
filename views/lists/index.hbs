@@ -6,7 +6,9 @@
     {{#each tickets}}
       <div class="ticket">
         <a href=/lists/tickets/{{_id}}?listId={{../_id}}>{{name}}</a>
-        {{assigned_to}}
+        {{#if assigned_to}}
+          <p>Assigned: {{assigned_to}}</p>
+        {{/if}}
       </div>
     {{/each}}
     <a href="/lists/tickets/new?listId={{_id}}">Create new ticket</a>
